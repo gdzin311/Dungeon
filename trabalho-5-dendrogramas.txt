@@ -1,0 +1,38 @@
+Versão simplificada do algoritmo de árvore geradora mínima de Prim
+
+Inicializar dois conjuntos:
+	Salas não conectadas, contendo N salas com posição aleatória dentro da área definida por L x A
+	Salas conectadas, inicialmente vazio
+Escolher uma sala qualquer do conjunto de salas não conectadas e transferí-la para o conjunto de salas conectadas
+Enquanto existirem salas não conectadas:
+	Encontrar o par de salas mais próximas, sendo uma pertencente ao conjunto de salas conectadas e a outra ao conjunto de salas não conectadas
+	Criar uma ligação entre essas duas salas (a->b e b->a)
+	Transferir a sala não conectada recém-conectada para o conjunto de salas conectadas
+
+* O resultado é uma estrutura na qual existe um único caminho entre quaisquer duas salas
+
+Geração de dungeons
+
+https://www.gamedeveloper.com/programming/procedural-dungeon-generation-algorithm
+https://www.youtube.com/watch?v=2az2Gpum2nQ
+
+DAVI MACHADO MORTOLA, LUAN DE OLIVEIRA FERREIRA, CAETANO ALVES GONCALVES -> edifício
+
+MARIANA DOS SANTOS AMARAL, PEDRO HENRIQUE LEAL CONCEICAO, ARTHUR GONÇALVES CAÇOILO -> cidade
+
+MICHEL SAMANIEGO MARTINS, BRUNA FERREIRA LEITE, MANOEL MONTEIRO MALTA -> mundo
+
+RYAN DA COSTA GOMES, ISABELA FERRARELLI CUNHA, FELIPE SATORU MEUCCI-> mundo
+
+LUIZA MOURA DOS SANTOS, GABRIEL DA SILVEIRA GARCIA DEMARCO, ALEXANDRE BOSENBECKER PAZINATO -> cidade
+
+LIVIA GOMES MIRAPALHETA, LEONARDO LUIZ DA SILVA MAZUR, JORDAN ROBERSON MARTINS LUCEIRO -> edifício
+
+ADRIANO LIMA ALVES, ISABELLE MACHADO PRESTES, MATHEUS BORGES DA SILVEIRA -> mundo
+
+CAIO CESAR FARIAS RODRIGUEZ, BRUNO DA SILVA RODRIGUES, JULIA NOGUEIRA SILVA -> cidade
+
+JEAN SARACOL FEIJO JUNIOR, ICARO PEREIRA SILVEIRA, EDUARDO MEDEIROS CHAPLIN -> edifício
+
+ARTUR GUADALUPE DUARTE PEREIRA, PEDRO DIAS DE SOUZA, TAYLOR DA ROSA SILVA -> edifício
+
