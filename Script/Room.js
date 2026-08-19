@@ -6,7 +6,7 @@ export class Room
         this.y= y;
         this.xSpeed= 0;
         this.ySpeed= 0; 
-        this.width= Math.trunc(Math.random()*50);
-        this.height= Math.trunc(Math.random()*50);
+        this.width= 25;
+        this.height= 25;
     }
 }

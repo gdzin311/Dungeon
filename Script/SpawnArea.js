@@ -15,7 +15,7 @@ export class SpawnArea
         for(let i= 0; i < n; i++)
         {
             cord= this.#getRandomPoint();
-            rooms.unshift(new Room(cord.x, cord.y))
+            rooms.push(new Room(cord.x, cord.y))
         }
         return rooms;
     }

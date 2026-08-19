@@ -6,7 +6,7 @@ import { SpawnArea } from './SpawnArea.js';
 window.addEventListener('DOMContentLoaded', () => {
     const h = 800;
     const w = 800;
-    const conf = { repul: 10, bounds: { h: h, w: w } };
+    const conf = { repul: 25, bounds: { h: h/2, w: w/2 } };
 
     const canva = document.getElementById("Canvas");
     canva.height = h;

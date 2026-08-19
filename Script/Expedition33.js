@@ -54,8 +54,32 @@ export class Expedition33
             i.x += i.xSpeed;
             i.y += i.ySpeed;
 
-            i.xSpeed+= -(0 > i.xSpeed) + (0 < i.xSpeed);
-            i.ySpeed+= -(0 > i.ySpeed) + (0 < i.ySpeed);
+            i.xSpeed+= -(0 < i.xSpeed) + (0 > i.xSpeed);
+            i.ySpeed+= -(0 < i.ySpeed) + (0 > i.ySpeed);
+
+            if(i.x < -this.bounds.w)
+            {
+                i.x = -this.bounds.w;
+                i.xSpeed = 0;
+            }
+
+            if(i.x > this.bounds.w)
+            {
+                i.x = this.bounds.w + i.width;
+                i.xSpeed = 0;
+            }
+
+            if(i.y < -this.bounds.h)
+            {
+                i.y = -this.bounds.h;
+                i.ySpeed = 0;
+            }
+
+            if(i.y > this.bounds.h)
+            {
+                i.y = this.bounds.h + i.height;
+                i.ySpeed = 0;
+            }
         }
     }
 }
