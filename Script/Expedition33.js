@@ -7,22 +7,52 @@ export class Expedition33
         this.rooms= rooms;
     }
 
-    #colision(obj1, obj2)
+    #colision(obj1, obj2, action = 1)
     {
-        if (obj1.x <= obj2.x + obj2.width &&
-        obj2.x <= obj1.x + obj1.width &&
-        obj1.y <= obj2.y + obj2.height &&
-        obj2.y <= obj1.y + obj1.height)
+        let overlapX = Math.min(obj1.x + obj1.width, obj2.x + obj2.width) - Math.max(obj1.x, obj2.x);
+        let overlapY = Math.min(obj1.y + obj1.height, obj2.y + obj2.height) - Math.max(obj1.y, obj2.y);
+        if(action)
         {
-            let dx = obj1.x < obj2.x;
-            let dy = obj1.y < obj2.y;
-
-            obj1.xSpeed += -(dx)*this.repul + (!dx)*this.repul;
-            obj2.xSpeed += -(!dx)*this.repul + (dx)*this.repul;
-
-            obj1.ySpeed += -(dy)*this.repul + (!dy)*this.repul;
-            obj2.ySpeed += -(!dy)*this.repul + (dy)*this.repul;
-            return true
+            if (overlapX > 0 && overlapY > 0)
+            {
+                if (overlapX < overlapY)
+                {
+                    // separa pelo eixo X (menor overlap)
+                    let dir = obj1.x < obj2.x ? -1 : 1;
+                    obj1.xSpeed += dir * this.repul;
+                    obj2.xSpeed += -dir * this.repul;
+                }
+                else
+                {
+                    // separa pelo eixo Y (menor overlap)
+                    let dir = obj1.y < obj2.y ? -1 : 1;
+                    obj1.ySpeed += dir * this.repul;
+                    obj2.ySpeed += -dir * this.repul;
+                }
+                return true;
+            }
+            return false;
+        }
+        else
+        {
+             if (overlapX > 0 && overlapY > 0)
+             {
+    
+                if (overlapX < overlapY)
+                {
+                    let dir = obj1.x < obj2.x ? -1 : 1;
+                    let push = overlapX / 2 + 10;
+                    obj1.x += dir * push;
+                    obj2.x += -dir * push;
+                }
+                else
+                {
+                    let dir = obj1.y < obj2.y ? -1 : 1;
+                    let push = overlapY / 2 + 10;
+                    obj1.y += dir * push;
+                    obj2.y += -dir * push;
+                }
+            }
         }
     }
 
@@ -45,6 +75,14 @@ export class Expedition33
             }
             this.updateRooms();
         }
+
+        for(let i = 0; i < this.rooms.length; i++)
+            {
+                for(let j= i+1; j < this.rooms.length; j++)
+                {
+                    this.#colision(this.rooms[i], this.rooms[j], 0)
+                }
+            }
     }
 
     updateRooms()
@@ -54,8 +92,8 @@ export class Expedition33
             i.x += i.xSpeed;
             i.y += i.ySpeed;
 
-            i.xSpeed+= -(0 < i.xSpeed) + (0 > i.xSpeed);
-            i.ySpeed+= -(0 < i.ySpeed) + (0 > i.ySpeed);
+            i.xSpeed *= 0.8;
+            i.ySpeed *= 0.8;
 
             if(i.x < -this.bounds.w)
             {
@@ -63,9 +101,9 @@ export class Expedition33
                 i.xSpeed = 0;
             }
 
-            if(i.x > this.bounds.w)
+            if(i.x + i.width > this.bounds.w)
             {
-                i.x = this.bounds.w + i.width;
+                i.x = this.bounds.w - i.width;
                 i.xSpeed = 0;
             }
 
@@ -75,12 +113,11 @@ export class Expedition33
                 i.ySpeed = 0;
             }
 
-            if(i.y > this.bounds.h)
+            if(i.y - i.height > this.bounds.h)
             {
-                i.y = this.bounds.h + i.height;
+                i.y = this.bounds.h - i.height;
                 i.ySpeed = 0;
             }
         }
     }
 }
-

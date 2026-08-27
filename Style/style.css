@@ -13,7 +13,7 @@ body {
 #gameContainer {
     position: relative;
     width: 800px;
-    height: 550px;
+    height: 800px;
 }
 
 canvas {
@@ -24,7 +24,7 @@ canvas {
     height: 100%;
 }
 
-/* Camada de Trás: Terreno e estrelas */
+
 #staticCanvas {
     z-index: 1;
 }
