@@ -1,6 +1,7 @@
 import { Expedition33 } from './Expedition33.js';
 import { Draw } from './Draw.js';
 import { SpawnArea } from './SpawnArea.js';
+import { Connections } from './Connections.js';
 
 // Aguarda o HTML carregar antes de pegar o Canvas
 window.addEventListener('DOMContentLoaded', () => {
@@ -22,14 +23,15 @@ window.addEventListener('DOMContentLoaded', () => {
     ctx.translate(w / 2, h / 2);
 
     // Cria a área de spawn e gera as salas
-    const spawn = new SpawnArea(h * 0.3, 30);
+    const spawn = new SpawnArea(h * 0.3, 50);
 
     // Instancia o controlador de física/organização
     const expedition = new Expedition33(conf, spawn.rooms);
     expedition.organize();
 
+
     // Desenha as salas organizadas
-    draw.drawRooms(spawn.rooms);
+    draw.drawRooms(spawn.rooms, "red");
     
     // Restaura o estado original do contexto (opcional)
     ctx.restore(); 

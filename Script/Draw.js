@@ -5,17 +5,22 @@ export class Draw
         this.ctx = ctx;
     }
 
-    drawRooms(a)
+    drawRooms(a, color)
     {
         for(let i of a)
         {
-            this.drawbox(i);
+            this.drawbox(i, color);
         }
     }
 
-    drawbox(object)
+    drawConnections(a)
     {
-        this.ctx.fillStyle= "yellow";
+        
+    }
+
+    drawbox(object, color = "yellow")
+    {
+        this.ctx.fillStyle= color;
         this.ctx.fillRect(object.x, object.y, object.width, object.height);
     }
 }
