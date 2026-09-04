@@ -9,11 +9,11 @@ window.addEventListener('DOMContentLoaded', () => {
     const w = 800;
     const conf = { repul: 25, bounds: { h: h/2, w: w/2 } };
 
-    const canva = document.getElementById("Canvas");
-    canva.height = h;
-    canva.width = w;
+    const canvas = document.getElementById("Canvas");
+    canvas.height = h;
+    canvas.width = w;
 
-    const ctx = canva.getContext("2d");
+    const ctx = canvas.getContext("2d");
     
     // Instancia o desenhista passando o contexto
     const draw = new Draw(ctx);
@@ -29,10 +29,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const expedition = new Expedition33(conf, spawn.rooms);
     expedition.organize();
 
+    let connections = new Connections(spawn.rooms);
 
-    // Desenha as salas organizadas
-    draw.drawRooms(spawn.rooms, "red");
-    
+    draw.drawRooms(connections.rooms, "red");
+
+    ctx.clearRect(-w/2, -h/2, w/2, h/2)
+    draw.drawRooms(connections.principals, "red")
+    draw.drawRooms(connections.secundaries, "blue")
     // Restaura o estado original do contexto (opcional)
     ctx.restore(); 
 });

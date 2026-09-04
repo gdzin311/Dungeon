@@ -10,14 +10,23 @@ export class Connections
 
     makePrincipals()
     {
-        maiores = []
-        for(let i of this.rooms)
+        let maiores = [];
+        for(let i=0; i < this.rooms.length; i++)
         {
-            for(let j in maiores)
+            if(maiores.length < 10)
             {
-                if(i.area >= j.area && maiores.length >= 10)
+                maiores.push(this.rooms[i]);
+                if(maiores.length == 10)
                 {
-                    maiores.push(i)
+                    maiores.sort((a, b) => a.area - b.area);
+                }
+            }
+            else
+            for(let j=0; j < maiores.length; j++)
+            {
+                if(this.rooms[i].area > maiores[j].area)
+                {
+                    maiores[j] = this.rooms[i];
                     break;
                 }
             }
@@ -32,21 +41,24 @@ export class Connections
     
     makeConnections()
     {
-        let connections= []
+        let connections= [];
         for(let i= 0; i < this.principals.length; i++)
         {
-            let menor = 0;
+            let menor = Infinity;
             let atual= 0
             let connection = [];
 
             for(let j= 0; j < this.principals.length; j++)
             {
-                atual = Math.sqrt(((Math.abs(i.center.x - j.center.x))**2) + ((Math.abs(i.center.y - j.center.y))**2));
+                if(i === j) continue;
+
+                atual = Math.sqrt(((Math.abs(this.principals[i].center.x - this.principals[j].center.x))**2) + ((Math.abs(this.principals[i].center.y - this.principals[j].center.y))**2));
                 if(atual < menor)
                 {
                     menor = atual;
-                    connection = [{x: i.center.x, y: i.center.y}, {x: j.center.x, y: j.center.y}];
+                    connection = [{x: this.principals[i].center.x, y: this.principals[i].center.y}, {x: this.principals[j].center.x, y: this.principals[j].center.y}];
                 }
+                connections.push(connection);
             }
         }
         return(connections);
