@@ -76,7 +76,8 @@ export class Expedition33
             this.updateRooms();
         }
 
-        for(let i = 0; i < this.rooms.length; i++)
+        for(let x=0; x < 50; x++)
+            for(let i = 0; i < this.rooms.length; i++)
             {
                 for(let j= i+1; j < this.rooms.length; j++)
                 {
