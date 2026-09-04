@@ -7,33 +7,35 @@ export class Connections
         this.secundaries= this.makeSecundaries();
         this.connections= this.makeConnections();
     }
-
+.
     makePrincipals()
     {
         let maiores = [];
-        for(let i=0; i < this.rooms.length; i++)
+        for(let i = 0; i < this.rooms.length; i++)
         {
             if(maiores.length < 10)
             {
                 maiores.push(this.rooms[i]);
-                if(maiores.length == 10)
-                {
-                    maiores.sort((a, b) => a.area - b.area);
-                }
             }
             else
-            for(let j=0; j < maiores.length; j++)
             {
-                if(this.rooms[i].area > maiores[j].area)
+                let menorIdx = 0;
+                for(let j = 1; j < maiores.length; j++)
                 {
-                    maiores[j] = this.rooms[i];
-                    break;
+                    if(maiores[j].area < maiores[menorIdx].area)
+                    {
+                        menorIdx = j;
+                    }
+                }
+                if(this.rooms[i].area > maiores[menorIdx].area)
+                {
+                    maiores[menorIdx] = this.rooms[i];
                 }
             }
         }
-        return(maiores);
+        return maiores;
     }
-
+    
     makeSecundaries()
     {
         return(this.rooms.filter(room => !this.principals.includes(room)));
@@ -58,8 +60,10 @@ export class Connections
                     menor = atual;
                     connection = [{x: this.principals[i].center.x, y: this.principals[i].center.y}, {x: this.principals[j].center.x, y: this.principals[j].center.y}];
                 }
-                connections.push(connection);
             }
+
+            connections.push(connection);
+
         }
         return(connections);
     }
