@@ -36,6 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
     ctx.clearRect(-w/2, -h/2, w/2, h/2)
     draw.drawRooms(connections.principals, "red")
     draw.drawRooms(connections.secundaries, "blue")
+    draw.drawConnections(connections.connections)
     // Restaura o estado original do contexto (opcional)
     ctx.restore(); 
 });

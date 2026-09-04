@@ -40,31 +40,57 @@ export class Connections
     {
         return(this.rooms.filter(room => !this.principals.includes(room)));
     }
+
+    #distancia(a, b)
+    {
+        let dx = a.center.x - b.center.x;
+        let dy = a.center.y - b.center.y;
+        return Math.sqrt(dx*dx + dy*dy);
+    }
     
     makeConnections()
     {
-        let connections= [];
-        for(let i= 0; i < this.principals.length; i++)
+        let n = this.principals.length;
+        let connections = [];
+        if(n < 2) return connections;
+ 
+        let naArvore = new Array(n).fill(false);
+        naArvore[0] = true;
+        let totalNaArvore = 1;
+ 
+        while(totalNaArvore < n)
         {
-            let menor = Infinity;
-            let atual= 0
-            let connection = [];
-
-            for(let j= 0; j < this.principals.length; j++)
+            let menorDist = Infinity;
+            let melhorU = -1;
+            let melhorV = -1;
+ 
+            for(let u = 0; u < n; u++)
             {
-                if(i === j) continue;
-
-                atual = Math.sqrt(((Math.abs(this.principals[i].center.x - this.principals[j].center.x))**2) + ((Math.abs(this.principals[i].center.y - this.principals[j].center.y))**2));
-                if(atual < menor)
+                if(!naArvore[u]) continue;
+ 
+                for(let v = 0; v < n; v++)
                 {
-                    menor = atual;
-                    connection = [{x: this.principals[i].center.x, y: this.principals[i].center.y}, {x: this.principals[j].center.x, y: this.principals[j].center.y}];
+                    if(naArvore[v]) continue;
+ 
+                    let dist = this.#distancia(this.principals[u], this.principals[v]);
+                    if(dist < menorDist)
+                    {
+                        menorDist = dist;
+                        melhorU = u;
+                        melhorV = v;
+                    }
                 }
             }
-
-            connections.push(connection);
-
+ 
+            connections.push([
+                {x: this.principals[melhorU].center.x, y: this.principals[melhorU].center.y},
+                {x: this.principals[melhorV].center.x, y: this.principals[melhorV].center.y}
+            ]);
+ 
+            naArvore[melhorV] = true;
+            totalNaArvore++;
         }
-        return(connections);
+ 
+        return connections;
     }
 }
