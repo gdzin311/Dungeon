@@ -7,7 +7,7 @@ export class Connections
         this.secundaries= this.makeSecundaries();
         this.connections= this.makeConnections();
     }
-.
+
     makePrincipals()
     {
         let maiores = [];
@@ -35,7 +35,7 @@ export class Connections
         }
         return maiores;
     }
-    
+
     makeSecundaries()
     {
         return(this.rooms.filter(room => !this.principals.includes(room)));
