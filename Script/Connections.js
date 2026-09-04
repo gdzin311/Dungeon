@@ -19,17 +19,17 @@ export class Connections
             }
             else
             {
-                let menorIdx = 0;
+                let menor = 0;
                 for(let j = 1; j < maiores.length; j++)
                 {
-                    if(maiores[j].area < maiores[menorIdx].area)
+                    if(maiores[j].area < maiores[menor].area)
                     {
-                        menorIdx = j;
+                        menor = j;
                     }
                 }
-                if(this.rooms[i].area > maiores[menorIdx].area)
+                if(this.rooms[i].area > maiores[menor].area)
                 {
-                    maiores[menorIdx] = this.rooms[i];
+                    maiores[menor] = this.rooms[i];
                 }
             }
         }

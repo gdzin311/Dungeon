@@ -113,7 +113,7 @@ export class Expedition33
                 i.ySpeed = 0;
             }
 
-            if(i.y - i.height > this.bounds.h)
+            if(i.y + i.height > this.bounds.h)
             {
                 i.y = this.bounds.h - i.height;
                 i.ySpeed = 0;

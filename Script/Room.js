@@ -9,6 +9,6 @@ export class Room
         this.width= 10 + (Math.random() * 25);
         this.height= 10 + (Math.random() * 25);
         this.area = this.width * this.height;
-        this.center = {x: this.width/2, y: this.height/2};
+        this.center = {x: this.x + this.width/2, y: this.y + this.height/2};
     }
 }
